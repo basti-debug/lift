@@ -49,3 +49,7 @@ Mit Hilfe von Hall Sensoren im obersten und im untersten Geschoss wurde ein Ends
 
 **Foto Endstops!!**
 
+Wiring
+
+![[wiring.png]]
+
