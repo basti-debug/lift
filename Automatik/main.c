@@ -17,8 +17,8 @@
 #define FREE (0x00)
 
 #define Stock0 0	//Höhe des 0. Stockes in Drehimpulsticks
-#define Stock1 29	//Höhe des 1. Stockes in Drehimpulsticks
-#define Stock2 57	//Höhe des 2. Stockes in Drehimpulsticks
+#define Stock1 31	//Höhe des 1. Stockes in Drehimpulsticks
+#define Stock2 60	//Höhe des 2. Stockes in Drehimpulsticks
 
 #define HallKanalUnten 4	//Eingangskanal für den unteren Hallsensor
 
@@ -26,13 +26,47 @@ volatile unsigned char direction=0;	//Bit für die Richtung, 2=Aufwärts/1=Abwärts
 volatile unsigned int heightticks=1000;	//Zählvariable für die Höhe, bzw. die Umdrehungen des Motors
 volatile unsigned char stockwerk=0;	//Variable für das aktuelle Stockwerk
 
+unsigned char read_ADC8(unsigned char kanal)
+{
+	unsigned char wert = 0;
+	DDRA &= ~(1<<kanal);    //übergebener Kanal auf Eingang
+	ADCSRA &= ~(1<<ADATE); //Einzelwandlung
+	ADCSRA |= (1<<ADPS0) | (1<<ADPS1) | (1<<ADPS2);        //Hardwareteiler auf 128 setzen = 93,75kHz
+	ADCSRA |= (1<<ADEN);    //ADC-Wandler einschalten
+	ADMUX |= (1<<ADLAR);    //Wandlungsergebniss linksbündig
+	ADMUX &= (~(1<<MUX3) & (~(1<<MUX4)));    //MUX-Kanal einstellen: unipolar
+	ADMUX &= ~(1<<MUX0) & ~(1<<MUX1) & ~(1<<MUX2); //ADMUX kanäle rücksetzen
+	ADMUX |= kanal;        // ADMUX mit kanal verodern, somit die kanäle setzen
+	ADMUX |= (1<<REFS0);     // Referenz auf 5V
+	ADCSRA |= (1<<ADSC);    //Wandlung starten
+	while (ADCSRA & (1<<ADSC)){;};        //Warten, solange Wandlung im Gange ist
+	wert = ADCH;                     //Wert ausgeben
+	ADCSRA &= ~(1<<ADEN);    //Wandler ausschalten
+	return wert;            //ADC-Wert übergeben
+}
+
+unsigned char hallsensor(){		//Gibt "1" zurück wenn der Lift am unteren Hallsensor steht, und "2" beim oberen Hallsensor, und "0" falls weder noch
+	//Unterer Hall Sensor
+	if (read_ADC8(HallKanalUnten)<=30)	{return 1;}		//Wenn der untere Hallsensor ausgelöst hat
+	
+	//Oberer Hall Sensor
+	//if (read_ADC8(HallKanalOben)<=50)	{return 2;}		//Wenn der obere Hallsensor ausgelöst hat
+	
+	else if ((read_ADC8(HallKanalUnten)>=100))	{return 0;}	//Wenn beide nicht ausgelöst haben
+	return 0;	//Fehlerhafte Messung
+}
+
 ISR(INT1_vect)		//Wird bei fallender Flanke an PD3 ausgeführt
 {
 	switch(heightticks){		//Stockwerk nach den Heightticks setzen
-		case Stock0: stockwerk=0; break;
 		case Stock1: stockwerk=1; break;
 		case Stock2: stockwerk=2; break;
 		default: break;
+	}
+	if (hallsensor()==1)
+	{
+		stockwerk=0;
+		heightticks=0;
 	}
 	
 	if (direction==2)	//Falls nach oben gefahren wird
@@ -70,35 +104,7 @@ ISR(TIMER0_COMP_vect){		//Wird aufgerufen wenn der Timer OCR0 erreicht
 	}
 }
 
-unsigned char read_ADC8(unsigned char kanal)
-{
-	unsigned char wert = 0;
-	DDRA &= ~(1<<kanal);    //übergebener Kanal auf Eingang
-	ADCSRA &= ~(1<<ADATE); //Einzelwandlung
-	ADCSRA |= (1<<ADPS0) | (1<<ADPS1) | (1<<ADPS2);        //Hardwareteiler auf 128 setzen = 93,75kHz
-	ADCSRA |= (1<<ADEN);    //ADC-Wandler einschalten
-	ADMUX |= (1<<ADLAR);    //Wandlungsergebniss linksbündig
-	ADMUX &= (~(1<<MUX3) & (~(1<<MUX4)));    //MUX-Kanal einstellen: unipolar
-	ADMUX &= ~(1<<MUX0) & ~(1<<MUX1) & ~(1<<MUX2); //ADMUX kanäle rücksetzen
-	ADMUX |= kanal;        // ADMUX mit kanal verodern, somit die kanäle setzen
-	ADMUX |= (1<<REFS0);     // Referenz auf 5V
-	ADCSRA |= (1<<ADSC);    //Wandlung starten
-	while (ADCSRA & (1<<ADSC)){;};        //Warten, solange Wandlung im Gange ist
-	wert = ADCH;                     //Wert ausgeben
-	ADCSRA &= ~(1<<ADEN);    //Wandler ausschalten
-	return wert;            //ADC-Wert übergeben
-}
 
-unsigned char hallsensor(){		//Gibt "1" zurück wenn der Lift am unteren Hallsensor steht, und "2" beim oberen Hallsensor, und "0" falls weder noch
-	//Unterer Hall Sensor
-	if (read_ADC8(HallKanalUnten)<=40)	{return 1;}		//Wenn der untere Hallsensor ausgelöst hat
-	
-	//Oberer Hall Sensor
-	//if (read_ADC8(HallKanalOben)<=50)	{return 2;}		//Wenn der obere Hallsensor ausgelöst hat
-	
-	else if ((read_ADC8(HallKanalUnten)>=100))	{return 0;}	//Wenn beide nicht ausgelöst haben
-	return 0;	//Fehlerhafte Messung
-}
 
 void AufzugFahren(unsigned char zielstockwerk){
 	
@@ -109,9 +115,13 @@ void AufzugFahren(unsigned char zielstockwerk){
 		default: break;
 	}
 	
-	if (stockwerk>zielstockwerk){
-		heightticks -=1;
-	}
+	//if (stockwerk>zielstockwerk){
+		//heightticks = heightticks - 2;
+	//}
+	//if (zielstockwerk==2&&stockwerk==1)
+	//{
+		//heightticks = heightticks+2;
+	//}
 	
 	while (stockwerk>zielstockwerk)	//Wenn das aktuelle Stockwerk über dem Zielstockwerk liegt e.g. Aktuell: 1 Ziel:0
 	{
@@ -123,6 +133,7 @@ void AufzugFahren(unsigned char zielstockwerk){
 		direction=2;
 		OCR0=220;
 	}
+	
 	direction=0;
 }
 //Gibt beim gedrücktem Taster die Nummer zurück. Falls keiner gedrückt ist "3"
