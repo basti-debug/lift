@@ -39,7 +39,9 @@ Um die Stockwerke genau zu bestimmen, benutzen wir, wie vorgegeben, eine Lichtsc
 
 ![](docu/sources/Lichtschranke+unterbrecher.png)
 *Lichtschranke Halterung mit Unterbrecher*
+
 ![](docu/sources/lichtschrankereal.jpg)
+
 *realer Aufbau*
 
 **Wie Messen wir mit Hilfe der Lichtschranke ?** 
