@@ -1,6 +1,6 @@
 *** 
 
-![[liftfoto.png]]
+![[sources/liftfoto.png]]
 
 Projektmitglieder: 
 * Sebastian Mayrhofer / *zuständig für Hardware und Dokumentation*
@@ -16,40 +16,49 @@ Projektmitglieder:
 
 ## Aufgabenstellung 
 
-Im Projekt "Liftsteuerung" wird wie der Name schon verrät, das Konzept einer Liftsteuerung in Miniatur umgesetzt. Der Lift soll mit Hilfe von Lego Componenten gesteuert werden und mit Hilfe einer Lichtschranke soll die Position der Kabine herausgefunden werden. Ebenfalls werden zwei Hall Sensoren als Endstops genutzt. 
+Im Projekt "Liftsteuerung" wird dass Konzept einer Liftsteuerung in Miniatur umgesetzt. Der Lift soll mit Hilfe von Lego Componenten und einer MegaCard gesteuert werden. Mit Hilfe einer Lichtschranke soll die Position der Kabine herausgefunden werden. Ebenfalls wird ein Hall Sensor als Endstop genutzt. 
 
 
 ## Umsetzung
 
-Uns wurde ein sehr minimalistischer und filigraner Liftschacht ohne Technik oder der Gleichen gegeben, wir haben den Liftschacht verstärkt und der Kabine Rollen für ein stabileres auf und ab fahren zu ermöglichen. 
+Uns wurde ein sehr minimalistischer und filigraner Liftschacht ohne Technik oder der Gleichen zur verfügung gestellt, wir haben den Liftschacht verstärkt und der Kabine Rollen montiert, die die Fahrt stabilisieren sollen. 
 
 ### Benutztes Material
 
 * Lego-Steine  (Lift Schacht und Kabine) 
 * MEGACard  (Steuerung des Motors, auswertung der Sensoren)
-* Hall Sensoren (End-Stops)
+* Hall Sensor (End-Stop)
 * Lichtschranke (Stockwerkbestimmung)
 
 
 ### Stockwerk-bestimmung (Lichtschranke)
 
-Wir nutzen eine Lichtschranke, die von einem groben Zahnrad auf der Antriebswelle durchbrochen wurde, um zu Messen um wieviel Umdrehungen die Antriebsachse zurück gelegt hat. 
+Um die Stockwerke genau zu bestimmen, benutzen wir, wie vorgegeben, eine Lichtschranke. Diese Lichtschranke wurde unterbrochen durch ein Lego Technik Teil das wir direkt auf Antriebsachse (Winden Achse) gesteckt haben.
 
-**REFERENZ CODE!!**
+![[sources/Lichtschranke+unterbrecher.png]]
+*Lichtschranke Halterung mit Unterbrecher*
+![[sources/lichtschrankereal.jpg]] 
+*realer Aufbau*
 
-**FOTOS MODEL!!**
+**Wie Messen wir mit Hilfe der Lichtschranke ?** 
 
-![[endstopfoto.jpg]]
-
-**Lichtschranke Bild!!**
+Mit Hilfe eines Interrupts der auf fallende Flanke des Sensors (also das Unterbrechen der Lichtschranke) reagiert können wir die Stockwerke bestimmen.
 
 ### Endstops 
 
-Mit Hilfe von Hall Sensoren im obersten und im untersten Geschoss wurde ein Endstop realisiert. Dieser war ein nützliches Tool um die Position, nach einem Reset bzw Neustart der MegaCard, zu bestimmen. 
+Mit Hilfe eines HallSensoren im untersten Stock wurde ein Endstop realisiert. Dieser wird Benutzt um die Position der Kabine, nach einem Reset bzw Neustart der MegaCard, zu bestimmen. 
 
-**Foto Endstops!!**
+Der uns zur Verfügung gestellte Hall Sensor: 
 
-Wiring
+![[sources/hallsensor.jpg]]
+*in orange, der Hall Sensor*
 
-![[wiring.png]]
+Dieser wird ausgelöst durch einen Magnet der an der Kabine befestigt ist. Hierdurch können wir die Software kalibrieren und den Null Punkt festlegen. 
+
+### Motor Ansteuerung 
+Wir steuern den Aufzug Motor, ein Lego Eisenbahn Motor, mit Hilfe eines MotorTreibers an, dieser ist an PC6 und PC5 angeschlossen.
+
+### Verkabelung 
+
+![[sources/wiring.png]]
 

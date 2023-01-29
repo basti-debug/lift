@@ -4,40 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "667ee5eaea056c80",
+        "id": "4120788ba1a96209",
         "type": "tabs",
         "children": [
           {
-            "id": "858652f1eff5a079",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Liftsteuerung  Dokumentation.md",
-                "mode": "source",
-                "source": false
-              }
-            },
-            "group": "589eba8a32063ae2"
-          }
-        ]
-      },
-      {
-        "id": "dbf44cd9882baf55",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "e3511c332a0d2690",
+            "id": "13024370883f4a95",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Liftsteuerung  Dokumentation.md",
                 "mode": "preview",
-                "source": false
+                "source": true
               }
-            },
-            "group": "589eba8a32063ae2"
+            }
           }
         ]
       }
@@ -158,20 +138,26 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "e3511c332a0d2690",
+  "active": "13024370883f4a95",
   "lastOpenFiles": [
-    "sources/liftfoto.png",
-    "sources/endstopfoto.jpg",
+    "Screenshot 2023-01-29 155804 1.png",
+    "Screenshot 2023-01-29 155804.png",
+    "sources/hallsensor.jpg",
+    "sources/lichtschrankereal.jpg",
+    "sources/Lichtschranke+unterbrecher.png",
     "Liftsteuerung  Dokumentation.md",
-    "Pasted image 20230104005529.png"
+    "Pasted image 20230129155055.png",
+    "Pasted image 20230129155648.png",
+    "sources/liftfoto.png",
+    "sources/endstopfoto.jpg"
   ]
 }

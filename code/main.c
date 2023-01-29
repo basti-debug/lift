@@ -45,12 +45,9 @@ unsigned char read_ADC8(unsigned char kanal)
 	return wert;            //ADC-Wert übergeben
 }
 
-unsigned char hallsensor(){		//Gibt "1" zurück wenn der Lift am unteren Hallsensor steht, und "2" beim oberen Hallsensor, und "0" falls weder noch
+unsigned char hallsensor(){		//Gibt "1" zurück wenn der Lift am unteren Hallsensor steht und "0" falls weder noch
 	//Unterer Hall Sensor
 	if (read_ADC8(HallKanalUnten)<=30)	{return 1;}		//Wenn der untere Hallsensor ausgelöst hat
-	
-	//Oberer Hall Sensor
-	//if (read_ADC8(HallKanalOben)<=50)	{return 2;}		//Wenn der obere Hallsensor ausgelöst hat
 	
 	else if ((read_ADC8(HallKanalUnten)>=100))	{return 0;}	//Wenn beide nicht ausgelöst haben
 	return 0;	//Fehlerhafte Messung
@@ -77,7 +74,6 @@ ISR(INT1_vect)		//Wird bei fallender Flanke an PD3 ausgeführt
 	{
 		heightticks--;	//Zahlvariable decreasen
 	}
-	//_delay_ms(10);		//Entprellen
 }
 
 ISR(TIMER0_OVF_vect){		//Wird beim Overflow des Timers aufgerufen
@@ -115,23 +111,15 @@ void AufzugFahren(unsigned char zielstockwerk){
 		default: break;
 	}
 	
-	//if (stockwerk>zielstockwerk){
-		//heightticks = heightticks - 2;
-	//}
-	//if (zielstockwerk==2&&stockwerk==1)
-	//{
-		//heightticks = heightticks+2;
-	//}
-	
 	while (stockwerk>zielstockwerk)	//Wenn das aktuelle Stockwerk über dem Zielstockwerk liegt e.g. Aktuell: 1 Ziel:0
 	{
-		direction=1;
-		OCR0=80;
+		direction=1; // Richtung: abwärts
+		OCR0=80;     // Geschwindigkeit abwärts
 	}
 	while (stockwerk<zielstockwerk)	//Wenn das aktuelle Stockwerk unter dem Zielstockwerk liegt
 	{
-		direction=2;
-		OCR0=220;
+		direction=2; // Richtung: aufwärts
+		OCR0=220;    // Geschwindigkeit aufwärts 
 	}
 	
 	direction=0;
