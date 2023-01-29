@@ -1,6 +1,8 @@
+# Liftsteuerung
+
 *** 
 
-![[sources/liftfoto.png]]
+![](sources/liftfoto.png)
 
 Projektmitglieder: 
 * Sebastian Mayrhofer / *zuständig für Hardware und Dokumentation*
@@ -35,9 +37,9 @@ Uns wurde ein sehr minimalistischer und filigraner Liftschacht ohne Technik oder
 
 Um die Stockwerke genau zu bestimmen, benutzen wir, wie vorgegeben, eine Lichtschranke. Diese Lichtschranke wurde unterbrochen durch ein Lego Technik Teil das wir direkt auf Antriebsachse (Winden Achse) gesteckt haben.
 
-![[sources/Lichtschranke+unterbrecher.png]]
+![](sources/Lichtschranke+unterbrecher.png)
 *Lichtschranke Halterung mit Unterbrecher*
-![[sources/lichtschrankereal.jpg]] 
+![](sources/lichtschrankereal.jpg)
 *realer Aufbau*
 
 **Wie Messen wir mit Hilfe der Lichtschranke ?** 
@@ -50,7 +52,7 @@ Mit Hilfe eines HallSensoren im untersten Stock wurde ein Endstop realisiert. Di
 
 Der uns zur Verfügung gestellte Hall Sensor: 
 
-![[sources/hallsensor.jpg]]
+![](sources/hallsensor.jpg)
 *in orange, der Hall Sensor*
 
 Dieser wird ausgelöst durch einen Magnet der an der Kabine befestigt ist. Hierdurch können wir die Software kalibrieren und den Null Punkt festlegen. 
@@ -60,5 +62,5 @@ Wir steuern den Aufzug Motor, ein Lego Eisenbahn Motor, mit Hilfe eines MotorTre
 
 ### Verkabelung 
 
-![[sources/wiring.png]]
+![](sources/wiring.png)
 
