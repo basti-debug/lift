@@ -68,6 +68,7 @@ Dieser wird ausgelöst durch einen Magnet der an der Kabine befestigt ist. Hierd
 
 ### Motor Ansteuerung
 *ab hier Joel Rupp verfasst*
+
 Wir steuern den Aufzug Motor, einen Lego Eisenbahn Motor, mit Hilfe eines Motortreibers an, dieser ist an PC6 und PC5 zur Steuerung angeschlossen, als auch zweimal an VCC und einmal an GND
 
 ### Verkabelung 
