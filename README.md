@@ -104,3 +104,10 @@ Die Interrupts sind Rot eingefärbt
 * Um den Kabelsalat zu beseitigen könnte eine Adapterplatine designed werden, welche nur auf die MegaCard aufgesteckt werden müsste
 * Mit der MegaCardV5 oder neuer könnte das Display benutzt werden, um Fahrtrichtung und Stockwerk anzuzeigen
 * Ein Softwarereset könnte über einen Watchdogtimer realisiert werden, um im Fehlerfall automatisch zu resetten
+
+
+
+## Mehr Informationen
+
+* Repository: https://github.com/basti-debug/lift
+* Anleitung: https://github.com/basti-debug/lift/blob/main/docu/Anleitung.md
