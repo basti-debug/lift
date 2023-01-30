@@ -97,7 +97,7 @@ Da beim Auslesen der Lichtschranke keine Richtung bekannt ist, wird diese bei un
 ### System-Hierarchie 
 
 ![](docu/sources/hierarchy.png)
-Die Interrupts sind Rot eingefärbt
+*Die Interrupts sind Rot eingefärbt*
 
 ### Mögliche Verbesserungen 
 * Es könnte noch ein Hallsensor als oberer Endstop verwendet werden, dies würde den Fehler beheben
