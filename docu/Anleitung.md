@@ -2,7 +2,7 @@
 # Anleitung Liftschacht
 
 ## Anschlussdiagram:
-![](docu/sources/wiring.png)
+![](sources/wiring.png)
 
 ## Funktionsbeschreibung
 * Reset: Nach einem Reset fährt der Aufzug in das Erdgeschoss hinunter.
