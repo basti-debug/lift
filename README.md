@@ -16,7 +16,7 @@ Projektmitglieder:
 
 ***
 
-## Aufgabenstellung 
+## Aufgabenstellung -Sebastian
 
 Im Projekt "Liftsteuerung" wird dass Konzept einer Liftsteuerung in Miniatur umgesetzt. Der Lift soll mit Hilfe von Lego Componenten und einer MegaCard gesteuert werden. Mit Hilfe einer Lichtschranke soll die Position der Kabine herausgefunden werden. Ebenfalls wird ein Hall Sensor als Endstop genutzt. 
 
@@ -25,15 +25,18 @@ Im Projekt "Liftsteuerung" wird dass Konzept einer Liftsteuerung in Miniatur umg
 
 Uns wurde ein motorisierter Liftschacht aus Lego zur Verfügung gestellt. Wir haben den Liftschacht verstärkt und der Kabine Rollen montiert, die die Fahrt stabilisieren sollen. 
 
-### Benutztes Material
+### Benutztes Material -Sebastian
 
 * Lego-Steine  (Lift Schacht und Kabine) 
 * MEGACard  (Steuerung des Motors, auswertung der Sensoren)
 * Hall Sensor (End-Stop)
 * Lichtschranke (Stockwerkbestimmung)
 
+### Eindeutige Bestimmung des Anfangszustands -Joel
 
-### Stockwerk-bestimmung (Lichtschranke)
+Da nach einem Reset die Position des Liftes unbekannt ist, muss irgendwie ein bestimmer Zustand hergestellt werden. Dies ist bei uns so realisiert, indem der Aufzug nach unten fährt, bis der untere Endstop auslöst. Dann wir die Höhe genullt
+
+### Stockwerk-bestimmung (Lichtschranke) -Sebastian
 
 Um die Stockwerke genau zu bestimmen, benutzen wir, wie vorgegeben, eine Lichtschranke. Diese Lichtschranke wurde unterbrochen durch ein Lego Technik Teil das wir direkt auf Antriebsachse (Winden Achse) gesteckt haben.
 
@@ -48,7 +51,7 @@ Um die Stockwerke genau zu bestimmen, benutzen wir, wie vorgegeben, eine Lichtsc
 
 Mit Hilfe eines externen Interrupts der auf die fallende Flanke des Sensors (also das Unterbrechen der Lichtschranke) konfiguriert ist können wir die zurückgelegten Umdrehungen, und somit das aktuelle Stockwerk bestimmen.
 
-### Endstops 
+### Endstops -Sebastian
 
 Mit Hilfe eines HallSensoren im untersten Stock wurde ein Endstop realisiert. Dieser wird Benutzt um die Position der Kabine, nach einem Reset bzw Neustart der MegaCard, zu bestimmen. 
 
@@ -59,10 +62,10 @@ Der uns zur Verfügung gestellte Hall Sensor:
 
 Dieser wird ausgelöst durch einen Magnet der an der Kabine befestigt ist. Hierdurch können wir die Software kalibrieren und den Null Punkt festlegen. 
 
-### Motor Ansteuerung -Joel
+### Motor Ansteuerung -Sebastian
 Wir steuern den Aufzug Motor, einen Lego Eisenbahn Motor, mit Hilfe eines Motortreibers an, dieser ist an PC6 und PC5 zur Steuerung angeschlossen, als auch zweimal an VCC und einmal an GND
 
-### Verkabelung 
+### Verkabelung -Sebastian
 
 ![](docu/sources/wiring.png)
 
@@ -78,3 +81,9 @@ Da beim Auslesen der Lichtschranke keine Richtung bekannt ist, wird diese bei un
 
 ![](docu/sources/hierarchy.png)
 Die Interrupts sind Rot eingefärbt
+
+### Mögliche Verbesserungen -Joel
+* Es könnte noch ein Hallsensor als oberer Endstop verwendet werden, dies würde den Fehler beheben
+* Um den Kabelsalat zu beseitigen könnte eine Adapterplatine designed werden, welche nur auf die MegaCard aufgesteckt werden müsste
+* Mit der MegaCardV5 oder neuer könnte das Display benutzt werden, um Fahrtrichtung und Stockwerk anzuzeigen
+* Ein Softwarereset könnte über einen Watchdogtimer realisiert werden, um im Fehlerfall automatisch zu resetten
