@@ -73,7 +73,17 @@ Wir steuern den Aufzug Motor, einen Lego Eisenbahn Motor, mit Hilfe eines Motort
 ### Probleme -Joel
 
 Wenn oft zwischen den Stockwerken 1 und 2 hin- und hergefahren wird, kann ein Fehler beobachtet werden, welcher immer großer wird. Wenn ins Erdgeschoss gefahren wird, wird dieser Fehler zurückgesetzt. Eine mögliche Erklärung dieses Fehlers folgt nun. 
-![](docu/sources/codeexample.png) Code in der ISR der Lichtschranke
+```c
+if (direction==2)	//Falls nach oben gefahren wird
+ {
+  heightticks++;	//Zählvariable erhöhen
+ }
+if (direction==1)	//Falls nach unten gefahren wird
+ {
+  heightticks--;	//Zahlvariable decreasen
+ }
+```
+Code in der ISR der Lichtschranke
 
 Da beim Auslesen der Lichtschranke keine Richtung bekannt ist, wird diese bei uns anhand der eingestellten Drehrichtung des Motors bestimmt. Wenn nun der Motor gestoppt wird, bleibt dieser aber nicht sofort stehen. Dadurch kann es passieren, dass der Geber in die nächste Stufe "rutscht", dies aber nicht erfasst wird. Wenn dies nur in eine Richtung passiert, addiert sich der Fehler
 
