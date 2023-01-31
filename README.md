@@ -34,7 +34,6 @@ Uns wurde ein motorisierter Liftschacht aus Lego zur Verfügung gestellt. Wir ha
 * Hall Sensor (End-Stop)
 * Lichtschranke (Stockwerkbestimmung)
 
-### Eindeutige Bestimmung des Anfangszustands -Joel
 
 
 ### Stockwerk-bestimmung (Lichtschranke)
