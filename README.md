@@ -60,6 +60,7 @@ Mit Hilfe eines HallSensoren im untersten Stock wurde ein Endstop realisiert. Di
 Der uns zur Verfügung gestellte Hall Sensor: 
 
 ![](docu/sources/hallsensor.jpg)
+
 *in orange, der Hall Sensor*
 
 Dieser wird ausgelöst durch einen Magnet der an der Kabine befestigt ist. Hierdurch können wir die Software kalibrieren und den Null Punkt festlegen. 
@@ -106,11 +107,11 @@ Da beim Auslesen der Lichtschranke keine Richtung bekannt ist, wird diese bei un
 * Ein Softwarereset könnte über einen Watchdogtimer realisiert werden, um im Fehlerfall automatisch zu resetten
 
 
-# Anleitung Liftschacht
+# Anleitung Lift
 
 ## Anschlussdiagram:
 ![](docu/sources/wiring.png)
-
+*zu beachten ist die Orientierung des Motor Treibers, zu sehen and dem makierten rechteck und den Kreis im linken oberen Eck*
 ## Funktionsbeschreibung
 * Reset: Nach einem Reset fährt der Aufzug in das Erdgeschoss hinunter.
 * Taster 0-2: Die Tasternummer gibt das Stockwerk an, in welches gefahren werden soll.
