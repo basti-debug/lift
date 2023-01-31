@@ -109,7 +109,7 @@ Da beim Auslesen der Lichtschranke keine Richtung bekannt ist, wird diese bei un
 # Anleitung Liftschacht
 
 ## Anschlussdiagram:
-![](sources/wiring.png)
+![](docu/sources/wiring.png)
 
 ## Funktionsbeschreibung
 * Reset: Nach einem Reset fährt der Aufzug in das Erdgeschoss hinunter.
